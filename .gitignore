@@ -1,0 +1,2 @@
+.env*
+dbt/config/profiles.yml

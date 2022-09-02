@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  postgres-warehouse:
+    image: "postgres:bullseye"
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./postgres/config/.env-postgres
+    # environment:
+    #   POSTGRES_DB: postgres
+    #   POSTGRES_USER: postgres
+    volumes:
+      - warehouse-volume:/var/lib/posgresql/data
+
+  dbt:
+    image: "ghcr.io/dbt-labs/dbt-postgres:1.2.latest"
+    volumes:
+      - type: bind
+        source: ./dbt/test_dbt_project
+        target: /usr/app
+      - type: bind
+        source: ./dbt/config/profiles.yml
+        target: /root/.dbt/profiles.yml
+    command: ["run"]
+    depends_on:
+      - postgres-warehouse
+
+  metabase:
+    image: "metabase/metabase:latest"
+    ports:
+      - "3000:3000"
+
+volumes:
+  warehouse-volume:
