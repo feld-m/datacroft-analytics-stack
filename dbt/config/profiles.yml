@@ -1,4 +1,4 @@
-[PROJECT-NAME]:
+[DBT-PROJECT-NAME]:
   target: dev
   outputs:
     dev:
