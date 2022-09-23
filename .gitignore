@@ -1,2 +1,2 @@
-.env*
-dbt/config/profiles.yml
+airbyte/
+archive/

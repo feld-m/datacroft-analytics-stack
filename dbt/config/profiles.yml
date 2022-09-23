@@ -1,0 +1,12 @@
+[PROJECT-NAME]:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: host.docker.internal
+      user: [DB-USER, e.g. postgres]
+      password: [DB-PASS]
+      port: 5432
+      dbname: [DB-NAME]
+      schema: [DB-DEFAULT-SCHEMA, e.g. public]
+      threads: 4
