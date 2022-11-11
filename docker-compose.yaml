@@ -4,6 +4,7 @@ services:
   postgres-warehouse:
     image: "postgres:15.0-bullseye"
     container_name: postgres-warehouse
+    restart: always
     ports:
       - "5432:5432"
     env_file:
@@ -14,6 +15,7 @@ services:
   dbt:
     image: "ghcr.io/dbt-labs/dbt-postgres:1.3.latest"
     container_name: dbt
+    restart: always
     volumes:
       - .:/usr/app
       - ./dbt/config/profiles.yml:/root/.dbt/profiles.yml
@@ -24,6 +26,7 @@ services:
   metabase:
     image: "metabase/metabase:v0.44.5"
     container_name: metabase
+    restart: always
     ports:
       - "3000:3000"
 
