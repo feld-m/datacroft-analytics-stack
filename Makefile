@@ -15,6 +15,12 @@ run:          ## Run containers
 stop:          ## Stop containers
 	docker-compose -f docker-compose-airbyte.yaml --env-file airbyte.env -f docker-compose.yaml stop
 
+.PHONY: clean
+clean:          ## Clean project
+	@echo "Deleting untracked files"
+	@rm -r dbt/logs
+	git clean -fdx
+
 .PHONY: update-airbyte
 update-airbyte:          ## Update Airbyte
 	curl -L -o airbyte.env https://raw.githubusercontent.com/airbytehq/airbyte/master/.env
