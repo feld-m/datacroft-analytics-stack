@@ -15,3 +15,8 @@ run:          ## Run containers
 stop:          ## Stop containers
 	docker-compose -f docker-compose-airbyte.yaml --env-file airbyte.env -f docker-compose.yaml stop
 
+.PHONY: update-airbyte
+update-airbyte:          ## Update Airbyte
+	curl -L -o airbyte.env https://raw.githubusercontent.com/airbytehq/airbyte/master/.env
+	curl -L -o docker-compose-airbyte.yaml https://raw.githubusercontent.com/airbytehq/airbyte/master/docker-compose.yaml
+
