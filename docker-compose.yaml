@@ -19,9 +19,20 @@ services:
     volumes:
       - .:/usr/app
       - ./dbt/config/profiles.yml:/root/.dbt/profiles.yml
-    command: [ "init" ]
+    command: [ "init", "analytics" ]
     depends_on:
       - postgres-warehouse
+
+  metabase-db:
+    image: "postgres:15.0-bullseye"
+    container_name: metabase-db
+    restart: always
+    ports:
+      - "5433:5432"
+    env_file:
+      - ./metabase/config/.env-metabase-db
+    volumes:
+      - metabase-db-volume:/var/lib/postgresql/data
 
   metabase:
     image: "metabase/metabase:v0.44.5"
@@ -29,6 +40,10 @@ services:
     restart: always
     ports:
       - "3000:3000"
+    env_file:
+      - ./metabase/config/.env-metabase-db
+
 
 volumes:
   warehouse-volume:
+  metabase-db-volume:

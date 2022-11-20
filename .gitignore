@@ -1,2 +1,3 @@
 airbyte/
 archive/
+*.venv*
