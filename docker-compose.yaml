@@ -15,7 +15,6 @@ services:
   dbt:
     image: "ghcr.io/dbt-labs/dbt-postgres:1.3.latest"
     container_name: dbt
-    restart: always
     volumes:
       - .:/usr/app
       - ./dbt/config/profiles.yml:/root/.dbt/profiles.yml
