@@ -20,7 +20,7 @@ services:
     volumes:
       - .:/usr/app
       - ./dbt/config/profiles.yml:/root/.dbt/profiles.yml
-    command: [ "init", "analytics" ]
+    command: [ "init", ${DBT_PROJECT} ]
     depends_on:
       - postgres-warehouse
 
@@ -44,11 +44,11 @@ services:
     ports:
       - "${MB_PORT}:3000"
     environment:
-      - MB_DB_TYPE: ${MB_DB_TYPE}
-      - MB_DB_DBNAME: ${MB_DB_DBNAME}
+      - MB_DB_TYPE: postgres
+      - MB_DB_DBNAME: ${MB_DB_NAME}
       - MB_DB_PORT: ${MB_DB_PORT}
       - MB_DB_USER: ${MB_DB_USER}
-      - MB_DB_PASS: ${MB_DB_PASS}
+      - MB_DB_PASS: ${MB_DB_PASSWORD}
       - MB_DB_HOST: ${MB_DB_HOST}
 
 
