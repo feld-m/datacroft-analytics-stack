@@ -1,30 +1,39 @@
 # Datacroft: Analytics Stack
 
-The Analytics Stack helps you easily set up a simple pipeline for reporting and analytics. It includes the following components:
+**Datacroft: Analytics Stack** was developed by [FELD M](https://www.feld-m.de/en/) to help you easily set up a pipeline for reporting and analytics.
 
-- EL tool: Airbyte
-- Warehouse: postgres
-- Data transformation tool: dbt
-- BI tool: Metabase
+## The Stack
+
+![image](https://user-images.githubusercontent.com/48355953/205872549-077beafd-01cd-4d78-aba5-21558e9129c6.png)
+
+It includes the following components as Docker containers:
+
+- EL tool: [Airbyte](https://airbyte.com/)
+- Data warehouse: [PostgreSQL](https://www.postgresql.org/)
+- Data transformation tool: [dbt](https://www.getdbt.com/)
+- BI tool: [Metabase](https://www.metabase.com/)
+
+## Requirements
+
+- [Docker](https://docs.docker.com/get-docker/) with [Docker Compose](https://docs.docker.com/compose/install/)
+- This stack was tested on macOS and Ubuntu
 
 ## Quickstart
 
 To set up a pipeline in your machine:
 
-1. Edit the `.env-analytics` file to add credentials and configure settings for PostgreSQL, dbt, and Metabase. (Hint: remember to use only letters, digits, and underscores in the dbt project name!)
-2. Run `make run`.
+1. Edit the `postgres/config/.env-postgres` file with the database credentials that you want to use for your PostgreSQL data warehouse.
+2. Edit the `dbt/config/profiles.yml` file by filling in the project name you want to use for your dbt project, and the credentials/details you used in the data warehouse above. Remember to use only letters, digits, and underscores in the dbt project name.
+3. Edit the `airbyte.env` file with your credentials and configuration preferences.
+4. Edit the `metabase/config/.env-metabase-db` file with your credentials and configuration preferences.
+5. Make sure that the Docker service is running.
+6. Open a terminal, cd into the project directory and execute `make run` to start the containers.
 
-You can access the applications like so:
-- Access the PostgreSQL data warehouse by connecting to port 5432 on the host machine
-- Access Airbyte on the browser by going to `localhost:8000`
-- Access Metabase on the browser by going to `localhost:3000`
+To access the applications:
 
-## Requirements
-- Make sure you have `docker` and `docker compose` installed in your machine.
-- This stack was tested on macOS and Ubuntu, we recommend that you use these operating systems to set up your analytics stack.
+- **PostgreSQL**: connect to `[host]:5432` using a [PostgreSQL client](https://wiki.postgresql.org/wiki/PostgreSQL_Clients)
+- **Airbyte**: open `[host]:8000` on a web browser
+- **Metabase**: open `[host]:3000` on a web browser
 
-## The Stack
+To stop the containers, go to the project folder in the terminal and run `make stop`.
 
-All components are run in containers.
-
-![image](https://user-images.githubusercontent.com/48355953/205872549-077beafd-01cd-4d78-aba5-21558e9129c6.png)
