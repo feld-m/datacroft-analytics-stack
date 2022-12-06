@@ -17,6 +17,11 @@ stop:          ## Stop containers
 	docker compose -f docker-compose-airbyte.yaml --env-file airbyte.env stop
 	docker compose -f docker-compose.yaml --env-file .env stop
 
+.PHONY: down
+down:          ## Spin down containers
+	docker compose -f docker-compose-airbyte.yaml --env-file airbyte.env down
+	docker compose -f docker-compose.yaml --env-file .env down
+
 .PHONY: clean
 clean:          ## Clean project
 	@echo "Deleting untracked files"
