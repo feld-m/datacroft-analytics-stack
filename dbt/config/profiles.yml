@@ -1,4 +1,4 @@
-"{{ env_var('DBT_PROJECT_NAME', 'analytics') }}":
+analytics:
   target: dev
   outputs:
     dev:

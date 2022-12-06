@@ -20,7 +20,7 @@ services:
     volumes:
       - .:/usr/app
       - ./dbt/config/profiles.yml:/root/.dbt/profiles.yml
-    command: init ${DBT_PROJECT_NAME}
+    command: ["init", "analytics"]
     depends_on:
       - postgres-warehouse
 
@@ -50,6 +50,8 @@ services:
       - MB_DB_USER=${MB_DB_USER}
       - MB_DB_PASS=${MB_DB_PASSWORD}
       - MB_DB_HOST=${MB_DB_HOST}
+    depends_on:
+      - metabase-db
 
 
 volumes:
