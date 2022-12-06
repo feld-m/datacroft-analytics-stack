@@ -20,7 +20,7 @@ services:
     volumes:
       - .:/usr/app
       - ./dbt/config/profiles.yml:/root/.dbt/profiles.yml
-    command: [ "init", ${DBT_PROJECT} ]
+    command: [ "init", ${DBT_PROJECT_NAME} ]
     depends_on:
       - postgres-warehouse
 
