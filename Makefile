@@ -7,13 +7,20 @@ help:             ## Show the help.
 
 .PHONY: run
 run:          ## Run containers
-	docker compose -f docker-compose-airbyte.yaml --env-file airbyte.env -f docker-compose.yaml up -d
+	docker compose -f docker-compose-airbyte.yaml --env-file airbyte.env up -d
+	docker compose -f docker-compose.yaml --env-file .env up -d
 	@echo "Metabase: http://localhost:3000"
 	@echo "Airbyte: http://localhost:8000"
 
 .PHONY: stop
 stop:          ## Stop containers
-	docker compose -f docker-compose-airbyte.yaml --env-file airbyte.env -f docker-compose.yaml stop
+	docker compose -f docker-compose-airbyte.yaml --env-file airbyte.env stop
+	docker compose -f docker-compose.yaml --env-file .env stop
+
+.PHONY: down
+down:          ## Spin down containers
+	docker compose -f docker-compose-airbyte.yaml --env-file airbyte.env down
+	docker compose -f docker-compose.yaml --env-file .env down
 
 .PHONY: clean
 clean:          ## Clean project

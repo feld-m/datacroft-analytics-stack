@@ -22,12 +22,11 @@ It includes the following components as Docker containers:
 
 To set up a pipeline in your machine:
 
-1. Edit the `postgres/config/.env-postgres` file with the database credentials that you want to use for your PostgreSQL data warehouse.
-2. Edit the `dbt/config/profiles.yml` file by filling in the project name you want to use for your dbt project, and the credentials/details you used in the data warehouse above. Remember to use only letters, digits, and underscores in the dbt project name.
-3. Edit the `airbyte.env` file with your credentials and configuration preferences.
-4. Edit the `metabase/config/.env-metabase-db` file with your credentials and configuration preferences.
-5. Make sure that the Docker service is running.
-6. Open a terminal, cd into the project directory and execute `make run` to start the containers.
+1. Make sure that the Docker service is running
+2. Edit the following configuration files:
+    - `.env`: credentails and configurations for PostgreSQL Data Warehouse, dbt, and Metabase
+    - `airbyte.env`: credentials and configuration preferences for Airbyte
+3. Open a terminal on the project directory and execute `make run` to start the containers
 
 To access the applications:
 
