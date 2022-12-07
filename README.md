@@ -16,6 +16,7 @@ It includes the following components as Docker containers:
 ## Requirements
 
 - [Docker](https://docs.docker.com/get-docker/) with [Docker Compose](https://docs.docker.com/compose/install/)
+- [make](https://www.gnu.org/software/make/)
 - This stack was tested on macOS and Ubuntu
 
 ## Quickstart
